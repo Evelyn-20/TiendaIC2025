@@ -96,6 +96,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    //Para encriptar la contraseña
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
         build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
