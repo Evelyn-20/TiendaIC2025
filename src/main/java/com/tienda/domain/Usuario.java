@@ -20,7 +20,8 @@ public class Usuario implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;    
+    private Long idUsuario;  
+    
     @NotEmpty
     private String username;    
     @NotEmpty
