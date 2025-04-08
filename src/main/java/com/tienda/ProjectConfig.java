@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -21,7 +20,7 @@ public class ProjectConfig implements WebMvcConfigurer {
 
     /* Los siguientes métodos son para incorporar el tema de internacionalización en el proyecto */
 
- /* localeResolver se utiliza para crear una sesión de cambio de idioma*/
+    /* localeResolver se utiliza para crear una sesión de cambio de idioma*/
     @Bean
     public LocaleResolver localeResolver() {
         var slr = new SessionLocaleResolver();
@@ -101,25 +100,4 @@ public class ProjectConfig implements WebMvcConfigurer {
     public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
         build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
-
-    /* El siguiente método se utiliza para completar la clase no es realmente funcional, la próxima semana se reemplaza con usuarios de BD */
-    /*@Bean
-    public UserDetailsService users() {
-        UserDetails admin = User.builder()
-                .username("juan")
-                .password("{noop}123")
-                .roles("USER", "VENDEDOR", "ADMIN")
-                .build();
-        UserDetails sales = User.builder()
-                .username("rebeca")
-                .password("{noop}456")
-                .roles("USER", "VENDEDOR")
-                .build();
-        UserDetails user = User.builder()
-                .username("pedro")
-                .password("{noop}789")
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(user, sales, admin);
-    }*/
 }
